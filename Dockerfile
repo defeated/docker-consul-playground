@@ -19,5 +19,5 @@ RUN curl -Lo /tmp/consul-ui.zip https://dl.bintray.com/mitchellh/consul/0.5.2_we
     cd /opt/consul-ui/ && \
     unzip /tmp/consul-ui.zip
 
-# run Consul server
-ENTRYPOINT [ "consul" ]
+# prefix command to run consul subcommands
+ENTRYPOINT [ "consul", "agent" ]
