@@ -1,0 +1,17 @@
+consul1:
+  build: .
+  hostname: consul1
+  volumes:
+    - /tmp/consul/:/opt/consul/data/
+  command: -data-dir=/opt/consul/data/ -server -bootstrap-expect=1
+
+consului:
+  build: .
+  hostname: consului
+  volumes:
+    - /tmp/consul/:/opt/consul/data/
+  links:
+    - consul1:consul1
+  ports:
+    - 8500:8500
+  command: -data-dir=/opt/consul/data/ -ui-dir=/opt/consul-ui/dist/ -client=0.0.0.0 -join=consul1
